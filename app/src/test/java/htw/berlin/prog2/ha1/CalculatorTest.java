@@ -87,7 +87,23 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("new implimentation that can substract two positive numbers from each other")
+    void testPositiveSubtraction(){
+        Calculator calc = new Calculator();
 
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+
+        String expected = "2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
 
     //TODO hier weitere Tests erstellen
 }
