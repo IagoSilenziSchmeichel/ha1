@@ -88,7 +88,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
     @Test
-    @DisplayName("new implimentation that can substract two positive numbers from each other")
+    @DisplayName("new implementation that can substract two positive numbers from each other")
     void testPositiveSubtraction(){
         Calculator calc = new Calculator();
 
@@ -105,6 +105,43 @@ class CalculatorTest {
 
     }
 
+    //fehlercode1
+@Test
+    @DisplayName("two negative numbers being multiplicated incorrectly")
+    void multiplyNegativeNumbers(){
+
+        Calculator calc = new Calculator();
+
+        calc.pressNegativeKey(); // vorzeichen wird ignoriert
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("*");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+
+        String expected = "25";
+        String actual = calc.readScreen();
+
+        assertEquals(expected,actual);
+
+}
+//fehlercode2
+@Test
+    @DisplayName("repeatition of the equal sign but it dooesnt work")
+    void RepeatofEqualsOperation(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(7);
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+
+        String expected = "21";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+}
     //TODO hier weitere Tests erstellen
 }
 
