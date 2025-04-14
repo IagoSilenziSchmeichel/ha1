@@ -112,7 +112,7 @@ class CalculatorTest {
 
         Calculator calc = new Calculator();
 
-        calc.pressNegativeKey(); // vorzeichen wird ignoriert
+        calc.pressNegativeKey(); //
         calc.pressDigitKey(5);
         calc.pressBinaryOperationKey("*");
         calc.pressDigitKey(5);
