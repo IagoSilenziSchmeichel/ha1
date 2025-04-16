@@ -107,24 +107,23 @@ class CalculatorTest {
 
     //fehlercode1
 @Test
-    @DisplayName("two negative numbers being multiplicated incorrectly")
-    void multiplyNegativeNumbers(){
-
+    @DisplayName("just pressing Dot key as a starting input")
+    void teststartingDotKey(){
         Calculator calc = new Calculator();
 
-        calc.pressNegativeKey(); //
-        calc.pressDigitKey(5);
-        calc.pressBinaryOperationKey("*");
-        calc.pressDigitKey(5);
+        calc.pressDotKey();
+        calc.pressDigitKey(6);
+        calc.pressBinaryOperationKey(-);
+        calc.pressDigitKey(2);
         calc.pressEqualsKey();
 
-
-        String expected = "25";
+        String expected = "0.4";
         String actual = calc.readScreen();
 
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
 
-}
+    }
+
 //fehlercode2
 @Test
     @DisplayName("repeatition of the equal sign but it dooesnt work")
