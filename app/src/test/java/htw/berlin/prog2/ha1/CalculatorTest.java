@@ -106,27 +106,28 @@ class CalculatorTest {
     }
 
     //fehlercode1
-@Test
-    @DisplayName("just pressing Dot key as a starting input")
-    void teststartingDotKey(){
+    @Test
+    @DisplayName("should allow continuation of calculation after clearing screen once")
+    void testClearOperation() {
         Calculator calc = new Calculator();
 
-        calc.pressDotKey();
-        calc.pressDigitKey(6);
-        calc.pressBinaryOperationKey(-);
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("+");
         calc.pressDigitKey(2);
+        calc.pressClearKey();
+        calc.pressDigitKey(5);
         calc.pressEqualsKey();
 
-        String expected = "0.4";
+        String expected = "13";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
-
     }
+
 
 //fehlercode2
 @Test
-    @DisplayName("repeatition of the equal sign but it dooesnt work")
+    @DisplayName(" should be able to do the repeatition of the equal sign")
     void RepeatofEqualsOperation(){
         Calculator calc = new Calculator();
 
@@ -141,6 +142,7 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
 }
+
     //TODO hier weitere Tests erstellen
 }
 

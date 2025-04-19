@@ -14,9 +14,8 @@ public class Calculator {
 
     private String latestOperation = "";
 
-    /**
-     * @return den aktuellen Bildschirminhalt als String
-     */
+    private double lastOperand = 0;
+
     public String readScreen() {
         return screen;
     }
@@ -46,8 +45,7 @@ public class Calculator {
      */
     public void pressClearKey() {
         screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+
     }
 
     /**
@@ -94,14 +92,13 @@ public class Calculator {
      * Beim zweimaligem Drücken, oder wenn bereits ein Trennzeichen angezeigt wird, passiert nichts.
      */
     public void pressDotKey() {
-        if(!screen.contains(".")) screen = screen + ".";
-
-
-
-
-
-
+        if (!screen.contains(".")) {
+            screen = screen + ".";
+        }
     }
+
+
+
 
     /**
      * Empfängt den Befehl der gedrückten Vorzeichenumkehrstaste ("+/-").
@@ -110,7 +107,8 @@ public class Calculator {
      * Zeigt der Bildschirm bereits einen negativen Wert mit führendem Minus an, dann wird dieses
      * entfernt und der Inhalt fortan als positiv interpretiert.
      */
-    public void pressNegativeKey() {
+
+     public void pressNegativeKey() {
         screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
     }
 
@@ -123,17 +121,28 @@ public class Calculator {
      * Operation (ggf. inklusive letztem Operand) erneut auf den aktuellen Bildschirminhalt angewandt
      * und das Ergebnis direkt angezeigt.
      */
+
     public void pressEqualsKey() {
         double currentOperand;
 
+        if(lastOperand ==0) {
+            currentOperand = Double.parseDouble(screen);
+            lastOperand = currentOperand;
+        }
+        else{
+            currentOperand = lastOperand;
+        }
+
         var result = switch(latestOperation) {
-            case "+" -> latestValue + Double.parseDouble(screen);
-            case "-" -> latestValue - Double.parseDouble(screen);
-            case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> latestValue / Double.parseDouble(screen);
+            case "+" -> latestValue + currentOperand;
+            case "-" -> latestValue - currentOperand;
+            case "x" -> latestValue * currentOperand;
+            case "/" -> latestValue / currentOperand;
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
+        latestValue = result;
+
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
