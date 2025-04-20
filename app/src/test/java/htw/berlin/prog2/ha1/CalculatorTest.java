@@ -87,6 +87,7 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    //aufgabe1
     @Test
     @DisplayName("new implementation that can substract two positive numbers from each other")
     void testPositiveSubtraction(){
@@ -104,7 +105,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
 
     }
-
+    //aufgabe2
     //fehlercode1
     @Test
     @DisplayName("should allow continuation of calculation after clearing screen once")
@@ -123,9 +124,7 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-
-
-//fehlercode2
+    //fehlercode2
 @Test
     @DisplayName(" should be able to do the repeatition of the equal sign")
     void RepeatofEqualsOperation(){

@@ -45,7 +45,7 @@ public class Calculator {
      */
     public void pressClearKey() {
         screen = "0";
-
+//änderung, cleared nur den bildschirm behält aber die Rechnung und löscht nicht mehr alles
     }
 
     /**
@@ -129,8 +129,7 @@ public class Calculator {
             currentOperand = Double.parseDouble(screen);
             lastOperand = currentOperand;
         }
-        else{
-            currentOperand = lastOperand;
+        else{currentOperand = lastOperand;
         }
 
         var result = switch(latestOperation) {
@@ -146,5 +145,7 @@ public class Calculator {
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        //rechnet erst wie gewohnt und merkt sich dann zweiten wert-
+        //last operand fürs nächste mal, falls wenn man = drückt mit dem selben wert erneut gerechnet wird
     }
 }
